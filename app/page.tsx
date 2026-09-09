@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { ProjectGallery } from "./project-gallery";
 import { ContactForm } from "./contact-form";
 import { LineArrow } from "./line-arrow";
+import { YouTubeGallery } from "./youtube-gallery";
 
 type Language = "en" | "fa";
 type GroupId = "academic" | "innovation" | "teaching" | "practice";
@@ -129,7 +130,7 @@ const groups: Array<{ id: GroupId; image: string; figure: string; source: Record
 
 const copy = {
   en: {
-    nav: [["Home", "#top"], ["About / CV", "#profile"], ["Work / Projects", "#categories"], ["Contact", "#contact"]],
+    nav: [["Home", "#top"], ["About / CV", "#profile"], ["Work / Projects", "#categories"], ["Videos", "#videos"], ["Contact", "#contact"]],
     heroKicker: "Architectural systems / Research · Making · Implementation",
     heroHardwareAlt: "Minimal interactive architecture schematic connecting an Arduino, camera and actuator to machine-learning logic and an interactive contour field.",
     name: "Amir Shamani",
@@ -158,7 +159,7 @@ const copy = {
     profileTitle: "Where structural logic becomes interactive behaviour.",
     profileBody: "With a foundation in civil engineering and an M.Arch in Architectural Technology, I work across computational design, interactive systems, physical prototyping and on-site implementation. My focus is architecture that remains technically legible from research and concept through fabrication and construction.",
     current: "Current",
-    currentValue: "Head of Research & Development · SONG Architects, Tehran",
+    currentValue: "Head of Research & Development · SONG Architects, Tehran / Teaching Assistant · Faculty of Fine Arts, University of Tehran",
     education: "Education",
     educationValue: "M.Arch Architectural Technology · B.Sc. Civil Engineering",
     research: "Research",
@@ -260,6 +261,27 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const protectImages = (event: MouseEvent) => {
+      if (event.target instanceof Element && event.target.closest("img, picture")) {
+        event.preventDefault();
+      }
+    };
+
+    const preventImageDrag = (event: DragEvent) => {
+      if (event.target instanceof Element && event.target.closest("img, picture")) {
+        event.preventDefault();
+      }
+    };
+
+    document.addEventListener("contextmenu", protectImages);
+    document.addEventListener("dragstart", preventImageDrag);
+    return () => {
+      document.removeEventListener("contextmenu", protectImages);
+      document.removeEventListener("dragstart", preventImageDrag);
+    };
+  }, []);
+
   return (
     <main className="portfolio" dir="ltr">
       <header className="site-header">
@@ -335,6 +357,16 @@ export default function Home() {
         </dl>
       </section>
 
+      <section className="video-section" id="videos">
+        <CodeBackdrop>{`moving_image = sequence(\n  prototype, process, interaction\n)`}</CodeBackdrop>
+        <header className="video-header" data-reveal>
+          <p>MEDIA / 01—10</p>
+          <h2>Videos</h2>
+          <span>Selected work on YouTube, presented in its original sequence.</span>
+        </header>
+        <YouTubeGallery />
+      </section>
+
       <section className="contact-section" id="contact">
         <CodeBackdrop>{`output = collaboration(\n  research, design, fabrication\n)`}</CodeBackdrop>
         <EdgeLabel>Contact</EdgeLabel>
@@ -352,7 +384,10 @@ export default function Home() {
         </div>
       </section>
 
-      <footer><p>{t.footer}</p><p>© 2026</p></footer>
+      <footer>
+        <p>{t.footer}</p>
+        <p>© 2026 Amir Shamani. All rights reserved. Images, drawings, documents, and project materials may not be reproduced, distributed, or reused without prior written permission.</p>
+      </footer>
     </main>
   );
 }

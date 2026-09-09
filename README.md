@@ -8,7 +8,7 @@
 
 مقدار CNAME در DNS دامنه: **`shmnamir.github.io`**
 
-در تمام مراحل زیر، عبارت `YOUR-USERNAME` را با `shmnamir` جایگزین کنید. این بسته تحویل فایل است؛ هیچ مخزن یا تنظیم DNS از طرف شما تغییر داده نشده است.
+در تمام مراحل زیر، عبارت `YOUR-USERNAME` را با `shmnamir` جایگزین کنید. مخزن `shmnamir.github.io` منبع انتشار سایت است و دامنهٔ شخصی نیز به GitHub Pages متصل شده است.
 
 English-only architectural technology and computational design portfolio. Standalone Next.js static export for GitHub Pages; no ChatGPT, Cloudflare Worker or backend credentials are needed to serve the website.
 
@@ -68,7 +68,7 @@ A       @     185.199.111.153
 
 فایل آمادهٔ `domain/CNAME` در بسته هست. پس از تنظیم دامنه، آن را داخل `public` هم کپی، Commit و Push کنید. در روش GitHub Actions، تنظیم Custom domain در پنل ضروری است؛ این فایل به‌تنهایی دامنه را وصل نمی‌کند. عمداً از ابتدا داخل `public` قرار داده نشده تا آدرس گیت‌هاب پیش از آماده‌شدن DNS قابل بررسی باشد.
 
-پس از تأیید DNS، Enforce HTTPS را فعال کنید. آماده‌شدن DNS و گواهی ممکن است تا ۲۴ ساعت طول بکشد. این بسته هنوز به حساب گیت‌هاب یا DNS شما متصل نشده است. میزبانی مخزن عمومی رایگان است؛ تمدید دامنه جداگانه پرداخت می‌شود.
+پس از تأیید DNS، Enforce HTTPS را فعال کنید. آماده‌شدن DNS و گواهی ممکن است تا ۲۴ ساعت طول بکشد. میزبانی مخزن عمومی رایگان است؛ تمدید دامنه جداگانه پرداخت می‌شود.
 
 ### ۶. فرم تماس را فعال کنید
 
@@ -92,7 +92,7 @@ npm test
 
 `out/` is the publishable static output; it is deliberately not committed. Use an HTTP server to preview it, not file://. `npm run dev` starts a local development server. The build performs TypeScript validation; `npm test` verifies static asset references and project evidence files, not browser interactions or email delivery.
 
-The homepage banner, project assets, English-only interface, horizontal mobile/tablet rails, outline/photo previews, accessible dialogs, Show More and contact form have been preserved. Original project documentation images are unmodified, including any annotations within them. Legacy translation data may remain in source but is not selectable in the interface.
+The homepage banner, project assets, English-only interface, horizontal mobile/tablet rails, outline/photo previews, accessible dialogs, Show More and contact form have been preserved. The ordered YouTube gallery uses lightweight thumbnail facades and privacy-enhanced embeds. The public CV is a metadata-free web-safe copy. A black-and-white architectural favicon, copyright notice and casual image-download deterrents are included. Original project documentation images are unmodified, including any annotations within them. Legacy translation data may remain in source but is not selectable in the interface.
 
 ## Official references
 

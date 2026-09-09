@@ -8,6 +8,11 @@ assert.doesNotMatch(html, /class="language-toggle"/);
 assert.match(html, /formsubmit.co\/amir.shamani@gmail.com/);
 assert.match(html, /name="message"/);
 assert.match(html, /line-arrow/);
+assert.match(html, /All rights reserved/);
+assert.match(html, /href="\/favicon\.svg/);
+for (const video of ['UcIaaAsZbNQ','kBtZKAc581c','PYp8ftdC-Lw','Hq1kjCIE1tE','cnT-m4wspdY','62fUfbJKM_A','3052bnP1KhQ','TYdYxblhzgE','NsTqQDEzM1c','Up19Bxxa5_8']) {
+  assert.ok(html.includes(video), `Missing YouTube video: ${video}`);
+}
 for (const title of ['Panto', 'Recip', 'Tensi']) assert.ok(html.includes(`Open project: ${title}`));
 let checked = 0;
 for (const match of html.matchAll(/(?:src|href)="(\/[^"?#]*)/g)) {
