@@ -6,6 +6,7 @@ import { ProjectGallery } from "./project-gallery";
 import { ContactForm } from "./contact-form";
 import { LineArrow } from "./line-arrow";
 import { YouTubeGallery } from "./youtube-gallery";
+import { CVViewer } from "./cv-viewer";
 
 type Language = "en" | "fa";
 type GroupId = "academic" | "innovation" | "teaching" | "practice";
@@ -166,7 +167,7 @@ const copy = {
     researchValue: "ICETAD 2019 publication · Interactive architecture book in progress",
     recognition: "Recognition",
     recognitionValue: "NOVA patent · National awards in structural toy design",
-    cv: "Download CV",
+    cv: "CV",
     contactTitle: "Start a conversation.",
     contactBody: "Available for research collaborations, computational design roles and selected architectural commissions.",
     email: "Email",
@@ -348,7 +349,7 @@ export default function Home() {
             <figcaption>{t.profileArtCaption}</figcaption>
           </figure>
         </div>
-        <div className="profile-main" data-reveal><h2>{t.profileTitle}</h2><p>{t.profileBody}</p><a href="/Amir-Shamani-CV.pdf" download>{t.cv}<LineArrow /></a></div>
+        <div className="profile-main" data-reveal><h2>{t.profileTitle}</h2><p>{t.profileBody}</p><CVViewer /></div>
         <dl className="profile-facts" data-reveal>
           <div><dt>{t.current}</dt><dd>{t.currentValue}</dd></div>
           <div><dt>{t.education}</dt><dd>{t.educationValue}</dd></div>

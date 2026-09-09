@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LineArrow } from "./line-arrow";
 
 const videos = [
@@ -18,15 +18,61 @@ const videos = [
 
 export function YouTubeGallery() {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const [expanded, setExpanded] = useState(false);
+  const [titles, setTitles] = useState<Record<string, string>>({});
+  const fifthCard = useRef<HTMLElement>(null);
+  const visibleVideos = expanded ? videos : videos.slice(0, 4);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function getOfficialTitle(id: string) {
+      const videoUrl = `https://www.youtube.com/watch?v=${id}`;
+      const endpoints = [
+        `https://www.youtube.com/oembed?url=${encodeURIComponent(videoUrl)}&format=json`,
+        `https://noembed.com/embed?url=${encodeURIComponent(videoUrl)}`,
+      ];
+
+      for (const endpoint of endpoints) {
+        try {
+          const response = await fetch(endpoint, { signal: controller.signal });
+          if (!response.ok) continue;
+          const metadata = await response.json() as { title?: unknown };
+          if (typeof metadata.title === "string" && metadata.title.trim()) return metadata.title.trim();
+        } catch {
+          if (controller.signal.aborted) return null;
+        }
+      }
+      return null;
+    }
+
+    Promise.all(videos.map(async (id) => [id, await getOfficialTitle(id)] as const)).then((results) => {
+      if (controller.signal.aborted) return;
+      const nextTitles: Record<string, string> = {};
+      results.forEach(([id, title]) => {
+        if (title) nextTitles[id] = title;
+      });
+      setTitles(nextTitles);
+    });
+
+    return () => controller.abort();
+  }, []);
+
+  const showRemainingVideos = () => {
+    setExpanded(true);
+    window.requestAnimationFrame(() => fifthCard.current?.focus());
+  };
 
   return (
-    <div className="video-grid" aria-label="Selected YouTube videos">
-      {videos.map((id, index) => {
+    <>
+    <div className="video-grid" aria-label="Selected YouTube videos" aria-live="polite">
+      {visibleVideos.map((id, index) => {
         const number = String(index + 1).padStart(2, "0");
         const isActive = activeVideo === id;
+        const title = titles[id] ?? `Video ${number}`;
 
         return (
-          <article className="video-card" key={id} data-reveal>
+          <article className="video-card" key={id} data-reveal ref={index === 4 ? fifthCard : undefined} tabIndex={index === 4 ? -1 : undefined}>
             <div className="video-frame">
               {isActive ? (
                 <iframe
@@ -54,6 +100,7 @@ export function YouTubeGallery() {
                 </button>
               )}
             </div>
+            <h3>{title}</h3>
             <div className="video-caption">
               <span>FILM / {number}</span>
               <a href={`https://youtu.be/${id}`} target="_blank" rel="noreferrer">
@@ -64,5 +111,11 @@ export function YouTubeGallery() {
         );
       })}
     </div>
+    {!expanded && (
+      <button className="show-more video-show-more" type="button" onClick={showRemainingVideos}>
+        Show More <span aria-hidden="true">+06</span>
+      </button>
+    )}
+    </>
   );
 }
