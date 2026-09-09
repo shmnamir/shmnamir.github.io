@@ -574,6 +574,7 @@ footer { padding: 30px var(--page-pad); font-size: 12px; }
 .is-fa .gallery-card h3 { line-height:1.6; }
 .profile-main h2 { line-height:1.15; }
 .profile-label,.profile-facts dt,.profile-main>a,.profile-main>.cv-open,.contact-links a,.main-nav { font-size:.875rem; }
+.profile-main > .cv-open { font-size: 1.125rem; font-weight: 700; letter-spacing: .04em; }
 .is-fa .main-nav,.is-fa .category-source,.is-fa .contact-links a { font-size:.875rem; }
 .is-fa .illustration-note,.is-fa footer { font-size:.8125rem; }
 .is-fa .profile-main h2,.is-fa .contact-section h2 { letter-spacing:0; }
@@ -624,3 +625,29 @@ footer { padding: 30px var(--page-pad); font-size: 12px; }
 }
 @media(max-width:420px) { .category-grid { grid-template-columns:1fr; } .category-art { max-height:200px; } .category-panel h3 { min-height:0; } .category-source { min-height:0; } }
 @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto!important; } *,*::before,*::after { animation:none!important; transition:none!important; } [data-reveal] { opacity:1!important; transform:none!important; } }
+
+/* Keep the original homepage banner, but frame it more prominently on phones. */
+@media (max-width:700px) {
+  .system-hero {
+    min-height:max(680px,calc(100svh - 58px));
+    overflow:hidden;
+  }
+  .hero-visual {
+    top:42px;
+    right:-34vw;
+    bottom:auto;
+    left:-34vw;
+    height:min(54svh,460px);
+  }
+  .hero-visual img {
+    object-fit:contain;
+    object-position:center top;
+  }
+}
+@media (max-width:420px) {
+  .hero-visual {
+    right:-42vw;
+    left:-42vw;
+    height:min(52svh,410px);
+  }
+}
