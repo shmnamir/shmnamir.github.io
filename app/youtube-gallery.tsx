@@ -17,7 +17,6 @@ const videos = [
 ] as const;
 
 export function YouTubeGallery() {
-  const [activeVideo, setActiveVideo] = useState<string | null>(null);
   const [expanded, setExpanded] = useState(false);
   const [titles, setTitles] = useState<Record<string, string>>({});
   const fifthCard = useRef<HTMLElement>(null);
@@ -71,42 +70,33 @@ export function YouTubeGallery() {
     <div className="video-grid" aria-label="Selected YouTube videos" aria-live="polite">
       {visibleVideos.map((id, index) => {
         const number = String(index + 1).padStart(2, "0");
-        const isActive = activeVideo === id;
         const title = titles[id] ?? `Video ${number}`;
+        const youtubeUrl = `https://youtu.be/${id}`;
 
         return (
           <article className={`video-card ${index >= 4 ? "video-card-new" : ""}`} key={id} ref={index === 4 ? fifthCard : undefined} tabIndex={index === 4 ? -1 : undefined}>
             <div className="video-frame">
-              {isActive ? (
-                <iframe
-                  src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`}
-                  title={`Amir Shamani — YouTube video ${number}`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
+              <a
+                className="video-preview"
+                href={youtubeUrl}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Open ${title} on YouTube in a new tab`}
+              >
+                <img
+                  src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`}
+                  alt=""
+                  loading="lazy"
+                  width="480"
+                  height="360"
                 />
-              ) : (
-                <button
-                  className="video-preview"
-                  type="button"
-                  onClick={() => setActiveVideo(id)}
-                  aria-label={`Play YouTube video ${number}`}
-                >
-                  <img
-                    src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`}
-                    alt=""
-                    loading="lazy"
-                    width="480"
-                    height="360"
-                  />
-                  <span className="video-play" aria-hidden="true"><i /></span>
-                </button>
-              )}
+                <span className="video-play" aria-hidden="true"><i /></span>
+              </a>
             </div>
-            <h3>{title}</h3>
+            <h3><a className="video-title-link" href={youtubeUrl} target="_blank" rel="noreferrer">{title}</a></h3>
             <div className="video-caption">
               <span>FILM / {number}</span>
-              <a href={`https://youtu.be/${id}`} target="_blank" rel="noreferrer">
+              <a href={youtubeUrl} target="_blank" rel="noreferrer">
                 View on YouTube <LineArrow />
               </a>
             </div>
