@@ -1,12 +1,81 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 
+const siteUrl = "https://www.amirshamani.com";
+
 export const metadata: Metadata = {
-  title: "Amir Shamani — Architecture Portfolio",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Amir Shamani — Architectural Technologist & Computational Designer",
+    template: "%s — Amir Shamani",
+  },
   description: "Portfolio of Amir Shamani — architectural technologist and computational designer working across kinetic systems, digital fabrication and buildable architecture.",
+  alternates: { canonical: "/" },
+  authors: [{ name: "Amir Shamani", url: siteUrl }],
+  creator: "Amir Shamani",
+  keywords: [
+    "Amir Shamani",
+    "architectural technologist",
+    "computational designer",
+    "interactive architecture",
+    "kinetic architecture",
+    "digital fabrication",
+    "Grasshopper",
+    "Rhino",
+  ],
+  openGraph: {
+    type: "website",
+    url: siteUrl,
+    siteName: "Amir Shamani Portfolio",
+    title: "Amir Shamani — Architectural Technologist & Computational Designer",
+    description: "Architecture, computational design, kinetic systems, digital fabrication and buildable interactive environments.",
+  },
+  twitter: {
+    card: "summary",
+    title: "Amir Shamani — Architectural Technologist & Computational Designer",
+    description: "Architecture, computational design, kinetic systems, digital fabrication and buildable interactive environments.",
+  },
+  verification: { google: "vP4OkV2Ul47faKEavBlZBrMuuNuFBtDJJaUzjCA9Qgs" },
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body>{children}</body></html>;
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Amir Shamani",
+    url: siteUrl,
+    jobTitle: "Architectural Technologist and Computational Designer",
+    sameAs: [
+      "https://www.linkedin.com/in/amirshamani/",
+      "https://www.instagram.com/senstudio.tech/",
+    ],
+    knowsAbout: [
+      "Interactive Architecture",
+      "Computational Design",
+      "Kinetic Architecture",
+      "Digital Fabrication",
+      "Architectural Technology",
+    ],
+  };
+
+  return (
+    <html lang="en">
+      <body>
+        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
+        />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-P1GXT99RF2" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-P1GXT99RF2', { anonymize_ip: true });`}
+        </Script>
+      </body>
+    </html>
+  );
 }
