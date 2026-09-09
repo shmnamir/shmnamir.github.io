@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Design-Build Workshops</title>
+  <desc id="desc">Four interlocking members form a reciprocal assembly, representing collective making and structural learning.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M14 18h27l9 9v19H23l-9-9z"/>
+    <path d="M23 18v28M41 18L14 37M50 27L23 46M14 18l36 28"/>
+    <path d="M9 14h10M14 9v10M45 50h10M50 45v10"/>
+    <circle cx="23" cy="27" r="2.25" fill="white"/>
+    <circle cx="41" cy="37" r="2.25" fill="white"/>
+  </g>
+</svg>

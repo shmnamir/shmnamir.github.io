@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Professional Architectural Practice</title>
+  <desc id="desc">A precise architectural frame moving from drawing axis to constructed volume.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M14 50V18h26v32H14z"/>
+    <path d="M22 18v32M32 18v32M14 28h26M14 39h26"/>
+    <path d="M40 18l10-6v32l-10 6M40 28l10-6M40 39l10-6"/>
+    <path d="M10 54h36"/>
+    <circle cx="14" cy="50" r="2.25" fill="white"/>
+    <circle cx="40" cy="18" r="2.25" fill="white"/>
+  </g>
+</svg>

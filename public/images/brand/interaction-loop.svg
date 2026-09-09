@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320">
+<title>Input, logic, response and feedback</title>
+<g fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="square">
+<path d="M56 56h56v56H56zM208 56h56v56h-56zM208 208h56v56h-56zM56 208h56v56H56z"/>
+<path d="M112 84h96m-7-6 7 6-7 6M236 112v96m-6-7 6 7 6-7M208 236h-96m7-6-7 6 7 6M84 208v-96m-6 7 6-7 6 7"/>
+<circle cx="84" cy="84" r="10"/><path d="M220 68l32 32m0-32-32 32M220 236h32M84 220v32"/>
+</g></svg>
