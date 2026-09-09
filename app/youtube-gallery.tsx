@@ -58,10 +58,13 @@ export function YouTubeGallery() {
     return () => controller.abort();
   }, []);
 
-  const showRemainingVideos = () => {
-    setExpanded(true);
-    window.requestAnimationFrame(() => fifthCard.current?.focus());
-  };
+  useEffect(() => {
+    if (!expanded) return;
+    const frame = window.requestAnimationFrame(() => fifthCard.current?.focus({ preventScroll: true }));
+    return () => window.cancelAnimationFrame(frame);
+  }, [expanded]);
+
+  const showRemainingVideos = () => setExpanded(true);
 
   return (
     <>
@@ -72,7 +75,7 @@ export function YouTubeGallery() {
         const title = titles[id] ?? `Video ${number}`;
 
         return (
-          <article className="video-card" key={id} data-reveal ref={index === 4 ? fifthCard : undefined} tabIndex={index === 4 ? -1 : undefined}>
+          <article className={`video-card ${index >= 4 ? "video-card-new" : ""}`} key={id} ref={index === 4 ? fifthCard : undefined} tabIndex={index === 4 ? -1 : undefined}>
             <div className="video-frame">
               {isActive ? (
                 <iframe

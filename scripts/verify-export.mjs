@@ -8,7 +8,8 @@ assert.doesNotMatch(html, /class="language-toggle"/);
 assert.match(html, /formsubmit.co\/amir.shamani@gmail.com/);
 assert.match(html, /name="message"/);
 assert.match(html, /line-arrow/);
-assert.match(html, /All rights reserved/);
+assert.match(html, /Amir Shamani\. All rights reserved\./);
+assert.doesNotMatch(html, /may not be reproduced/);
 assert.match(html, /href="\/favicon\.svg/);
 await stat(path.join(root, 'Amir-Shamani-CV-Web.webp'));
 assert.match(await readFile('app/cv-viewer.tsx', 'utf8'), /Amir-Shamani-CV-Web\.webp/);
@@ -19,6 +20,7 @@ for (const video of ['UcIaaAsZbNQ','kBtZKAc581c','PYp8ftdC-Lw','Hq1kjCIE1tE','cn
 }
 assert.match(youtubeGallery, /slice\(0, 4\)/);
 assert.match(youtubeGallery, /Show More/);
+assert.doesNotMatch(youtubeGallery, /className="video-card"[^>]*data-reveal/);
 for (const title of ['Panto', 'Recip', 'Tensi']) assert.ok(html.includes(`Open project: ${title}`));
 let checked = 0;
 for (const match of html.matchAll(/(?:src|href)="(\/[^"?#]*)/g)) {

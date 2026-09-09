@@ -210,6 +210,7 @@ img, picture { -webkit-user-drag: none; user-select: none; }
 .video-header > span { max-width: 460px; font-size: 1rem; line-height: 1.65; }
 .video-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 48px 18px; }
 .video-card { min-width: 0; }
+.video-card-new { animation: gallery-enter 300ms ease both; }
 .video-frame { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--gallery-line); background: #111; }
 .video-frame iframe,
 .video-preview,

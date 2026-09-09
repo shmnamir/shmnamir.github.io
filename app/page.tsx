@@ -387,7 +387,7 @@ export default function Home() {
 
       <footer>
         <p>{t.footer}</p>
-        <p>© 2026 Amir Shamani. All rights reserved. Images, drawings, documents, and project materials may not be reproduced, distributed, or reused without prior written permission.</p>
+        <p>Amir Shamani. All rights reserved.</p>
       </footer>
     </main>
   );
