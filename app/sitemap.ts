@@ -9,6 +9,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
+      alternates: {
+        languages: {
+          en: "https://www.amirshamani.com/",
+          fa: "https://www.amirshamani.com/fa/",
+        },
+      },
+    },
+    {
+      url: "https://www.amirshamani.com/fa/",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: "https://www.amirshamani.com/",
+          fa: "https://www.amirshamani.com/fa/",
+        },
+      },
     },
   ];
 }
