@@ -654,29 +654,3 @@ footer { padding: 30px var(--page-pad); font-size: 12px; }
     height:min(52svh,410px);
   }
 }
-
-/* Persian search profile: a focused, indexable companion to the English portfolio. */
-.fa-profile-page { min-height:100svh; background:#fff; color:#111; font-family:Tahoma,Arial,sans-serif; }
-.fa-profile-header { position:sticky; top:0; z-index:10; display:flex; justify-content:space-between; align-items:center; gap:24px; min-height:64px; padding:0 clamp(20px,4vw,64px); border-bottom:1px solid #d5d5d5; background:rgba(255,255,255,.96); }
-.fa-profile-header a { font-family:Arial,sans-serif; font-size:.875rem; font-weight:700; letter-spacing:.06em; }
-.fa-profile-header span { color:#666; font-size:.8125rem; }
-.fa-profile-content { width:min(980px,calc(100% - 40px)); margin:0 auto; padding:clamp(72px,10vw,150px) 0; }
-.fa-profile-index { margin:0 0 28px; color:#666; font: .75rem/1.7 ui-monospace,monospace; direction:ltr; text-align:right; letter-spacing:.08em; }
-.fa-profile-content h1 { margin:0; font-size:clamp(3.5rem,10vw,8rem); font-weight:400; line-height:1.05; letter-spacing:-.06em; }
-.fa-profile-lead { max-width:780px; margin:28px 0 96px; font-size:clamp(1.25rem,2.8vw,2.25rem); line-height:1.75; }
-.fa-profile-content section { display:grid; grid-template-columns:minmax(180px,.35fr) minmax(0,1fr); gap:clamp(28px,6vw,90px); padding:48px 0; border-top:1px solid #d5d5d5; }
-.fa-profile-content h2 { margin:0; font-size:1rem; font-weight:700; line-height:1.9; }
-.fa-profile-content section p,.fa-profile-content section ul { margin:0; font-size:1.0625rem; line-height:2.15; }
-.fa-profile-content section ul { padding-inline-start:0; padding-inline-end:1.25rem; }
-.fa-profile-links { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); margin-top:60px; border-top:1px solid #111; }
-.fa-profile-links a { display:flex; justify-content:space-between; gap:24px; padding:20px 0; border-bottom:1px solid #111; font-size:.9375rem; }
-.fa-profile-links a+a { padding-inline-start:20px; border-inline-start:1px solid #111; }
-.fa-profile-footer { display:flex; justify-content:flex-start; padding:28px clamp(20px,4vw,64px); border-top:1px solid #d5d5d5; color:#666; font-size:.75rem; }
-@media(max-width:700px) {
-  .fa-profile-header { min-height:58px; }
-  .fa-profile-content { padding-top:72px; }
-  .fa-profile-lead { margin-bottom:64px; }
-  .fa-profile-content section { grid-template-columns:1fr; gap:16px; padding:36px 0; }
-  .fa-profile-links { grid-template-columns:1fr; }
-  .fa-profile-links a+a { padding-inline-start:0; border-inline-start:0; }
-}
