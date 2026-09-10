@@ -13,7 +13,6 @@ export const metadata: Metadata = {
   description: "Portfolio of Amir Shamani — architectural technologist and computational designer working across kinetic systems, digital fabrication and buildable architecture.",
   alternates: {
     canonical: "/",
-    languages: { "en-US": "/", "fa-IR": "/fa/" },
   },
   authors: [{ name: "Amir Shamani", url: siteUrl }],
   creator: "Amir Shamani",
