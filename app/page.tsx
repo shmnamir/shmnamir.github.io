@@ -134,7 +134,7 @@ const copy = {
     nav: [["Home", "#top"], ["About / CV", "#profile"], ["Work / Projects", "#categories"], ["Videos", "#videos"], ["Contact", "#contact"]],
     heroKicker: "Architectural systems / Research · Making · Implementation",
     heroHardwareAlt: "Minimal interactive architecture schematic connecting an Arduino, camera and actuator to machine-learning logic and an interactive contour field.",
-    name: "Amir Shamani",
+    name: "AMIR SHAMANI",
     roles: ["Architectural Technologist", "Head of R&D · Computational Designer", "Interactive & Kinetic Architecture"],
     enter: "Explore the system",
     categoryIntro: "Four fields of work",
@@ -286,7 +286,7 @@ export default function Home() {
   return (
     <main className="portfolio" dir="ltr">
       <header className="site-header">
-        <a className="wordmark" href="#top" aria-label="Amir Shamani, home">Amir Shamani</a>
+        <a className="wordmark" href="#top" aria-label="Amir Shamani, home">AMIR SHAMANI</a>
         <nav className="main-nav" aria-label="Main navigation">
           {t.nav.map(([label, href]) => <a href={href} key={href}>{label}</a>)}
         </nav>
