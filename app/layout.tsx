@@ -37,6 +37,7 @@ export const metadata: Metadata = {
     description: "Architecture, computational design, kinetic systems, digital fabrication and buildable interactive environments.",
   },
   verification: { google: "vP4OkV2Ul47faKEavBlZBrMuuNuFBtDJJaUzjCA9Qgs" },
+  // Keep the raster icon first so Google Search can use a supported format.
   icons: {
     icon: [
       { url: "/favicon.png", type: "image/png", sizes: "96x96" },
