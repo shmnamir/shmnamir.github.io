@@ -11,7 +11,10 @@ export const metadata: Metadata = {
     template: "%s — Amir Shamani",
   },
   description: "Portfolio of Amir Shamani — architectural technologist and computational designer working across kinetic systems, digital fabrication and buildable architecture.",
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    languages: { "en-US": "/", "fa-IR": "/fa/" },
+  },
   authors: [{ name: "Amir Shamani", url: siteUrl }],
   creator: "Amir Shamani",
   keywords: [
@@ -23,6 +26,11 @@ export const metadata: Metadata = {
     "digital fabrication",
     "Grasshopper",
     "Rhino",
+    "امیر شامانی",
+    "تکنولوژیست معماری",
+    "طراح محاسباتی",
+    "معماری تعاملی",
+    "معماری پارامتریک",
   ],
   openGraph: {
     type: "website",
@@ -54,6 +62,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Amir Shamani",
+    alternateName: "امیر شامانی",
     url: siteUrl,
     jobTitle: "Architectural Technologist and Computational Designer",
     sameAs: [
@@ -66,6 +75,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       "Kinetic Architecture",
       "Digital Fabrication",
       "Architectural Technology",
+      "معماری تعاملی",
+      "طراحی محاسباتی",
+      "تکنولوژی معماری",
+      "معماری جنبشی",
+      "طراحی پارامتریک",
     ],
   };
 
