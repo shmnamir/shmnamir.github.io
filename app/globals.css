@@ -654,3 +654,33 @@ footer { padding: 30px var(--page-pad); font-size: 12px; }
     height:min(52svh,410px);
   }
 }
+
+/* Alternating architectural surfaces. */
+:root {
+  --surface-base: #ffffff;
+  --surface-alt: #f2f2f2;
+}
+
+.category-section {
+  background: var(--surface-alt);
+}
+
+.project-index > .gallery-section:nth-of-type(odd) {
+  background: var(--surface-base);
+}
+
+.project-index > .gallery-section:nth-of-type(even) {
+  background: var(--surface-alt);
+}
+
+.profile-section {
+  background: var(--surface-base);
+}
+
+.video-section {
+  background: var(--surface-alt);
+}
+
+.contact-section {
+  background: var(--surface-base);
+}
