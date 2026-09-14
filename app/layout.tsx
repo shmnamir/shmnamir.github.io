@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Script from "next/script";
+import { GoogleAnalytics } from "./analytics";
 import "./globals.css";
 
 const siteUrl = "https://www.amirshamani.com";
@@ -7,10 +7,10 @@ const siteUrl = "https://www.amirshamani.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Amir Shamani — Architectural Technologist & Computational Designer",
+    default: "Amir Shamani | Interactive Architecture & Computational Design",
     template: "%s — Amir Shamani",
   },
-  description: "Portfolio of Amir Shamani — architectural technologist and computational designer working across kinetic systems, digital fabrication and buildable architecture.",
+  description: "Amir Shamani is an architectural technologist and computational designer focused on interactive architecture, kinetic systems, prototyping and buildable research.",
   alternates: {
     canonical: "/",
   },
@@ -35,13 +35,20 @@ export const metadata: Metadata = {
     type: "website",
     url: siteUrl,
     siteName: "Amir Shamani Portfolio",
-    title: "Amir Shamani — Architectural Technologist & Computational Designer",
-    description: "Architecture, computational design, kinetic systems, digital fabrication and buildable interactive environments.",
+    title: "Amir Shamani | Interactive Architecture & Computational Design",
+    description: "Interactive architecture, computational design, kinetic systems, prototyping and buildable research by Amir Shamani.",
+    images: [{
+      url: "/images/homepage-interactive-system-wide-connected-clean.png",
+      width: 1672,
+      height: 941,
+      alt: "Amir Shamani interactive architecture and computational design portfolio",
+    }],
   },
   twitter: {
-    card: "summary",
-    title: "Amir Shamani — Architectural Technologist & Computational Designer",
-    description: "Architecture, computational design, kinetic systems, digital fabrication and buildable interactive environments.",
+    card: "summary_large_image",
+    title: "Amir Shamani | Interactive Architecture & Computational Design",
+    description: "Interactive architecture, computational design, kinetic systems, prototyping and buildable research by Amir Shamani.",
+    images: ["/images/homepage-interactive-system-wide-connected-clean.png"],
   },
   verification: { google: "vP4OkV2Ul47faKEavBlZBrMuuNuFBtDJJaUzjCA9Qgs" },
   // Keep the raster icon first so Google Search can use a supported format.
@@ -60,9 +67,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": `${siteUrl}/#person`,
     name: "Amir Shamani",
     alternateName: "امیر شامانی",
     url: siteUrl,
+    mainEntityOfPage: siteUrl,
     jobTitle: "Architectural Technologist and Computational Designer",
     sameAs: [
       "https://www.linkedin.com/in/amirshamani/",
@@ -90,13 +99,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
         />
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-P1GXT99RF2" strategy="afterInteractive" />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-P1GXT99RF2', { anonymize_ip: true });`}
-        </Script>
+        <GoogleAnalytics />
       </body>
     </html>
   );

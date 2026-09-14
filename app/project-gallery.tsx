@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
+import { trackEvent } from "./analytics";
 
 type Text = { en: string; fa: string };
 type Group = "academic" | "innovation" | "teaching" | "practice";
@@ -46,11 +47,19 @@ function ProjectCard({ project: p, firstNew }: { project: Project; firstNew: boo
   const detail = evidence[p.number];
   const [width,height] = dimensions[p.number] ?? ({ "04.1":[670,553], "04.2":[639,1080], "04.3":[675,599] } as Record<string, [number,number]>)[p.number];
   const outline = p.image.replace(/\.(webp|png)$/, "-outline.webp");
-  const openProject = (button: HTMLButtonElement) => { opener.current = button; setOpen(true); };
+  const openProject = (button: HTMLButtonElement) => {
+    opener.current = button;
+    trackEvent("view_project", {
+      project_name: p.title.en,
+      project_group: p.group,
+      project_number: p.number,
+    });
+    setOpen(true);
+  };
   return <article className="gallery-card" id={`project-${p.number}`} data-first-new={firstNew || undefined}>
     <button type="button" className={`gallery-image ${loaded ? "photo-ready" : ""} ${preview ? "preview-on" : ""}`} aria-label={`Open project: ${p.title.en}`} onClick={e => openProject(e.currentTarget)}>
       <img className="outline-layer" src={outline} alt="" width={width} height={height} loading="lazy" />
-      <img ref={photoRef} className="photo-layer" src={p.image} alt={p.alt.en} width={width} height={height} loading="eager" decoding="async" onLoad={() => setLoaded(true)} />
+      <img ref={photoRef} className="photo-layer" src={p.image} alt={p.alt.en} width={width} height={height} loading="lazy" decoding="async" onLoad={() => setLoaded(true)} />
       <span className="gallery-number" aria-hidden="true">{p.number}</span>
     </button>
     <div className="gallery-caption"><span>{p.category.en}</span><bdi>{p.year}</bdi></div>
@@ -75,6 +84,7 @@ export function ProjectGallery({ projects, groups, labels, notes }: { projects: 
   const [announcement, setAnnouncement] = useState("");
   const all = [...projects.filter(p => p.number !== "04"), ...toyProjects, ...additions];
   function expand(id: Group, count: number) {
+    trackEvent("expand_project_section", { project_group: id, revealed_projects: count });
     setExpanded(v => ({...v, [id]:true}));
     setAnnouncement(`${count} more projects revealed in ${labels[id]}.`);
     requestAnimationFrame(() => {
