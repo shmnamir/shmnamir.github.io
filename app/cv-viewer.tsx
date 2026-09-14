@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { LineArrow } from "./line-arrow";
+import { trackEvent } from "./analytics";
 
 export function CVViewer() {
   const [open, setOpen] = useState(false);
@@ -10,7 +11,10 @@ export function CVViewer() {
 
   return (
     <>
-      <button ref={trigger} type="button" className="cv-open" onClick={() => setOpen(true)}>
+      <button ref={trigger} type="button" className="cv-open" onClick={() => {
+        trackEvent("view_cv", { content_type: "web_cv" });
+        setOpen(true);
+      }}>
         CV <LineArrow />
       </button>
       <Dialog open={open} onOpenChange={setOpen}>
