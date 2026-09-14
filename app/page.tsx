@@ -361,7 +361,7 @@ export default function Home() {
       <section className="video-section" id="videos">
         <CodeBackdrop>{`moving_image = sequence(\n  prototype, process, interaction\n)`}</CodeBackdrop>
         <header className="video-header" data-reveal>
-          <p>MEDIA / 01—10</p>
+          <p>MEDIA / 01—11</p>
           <h2>Videos</h2>
           <span>Selected work on YouTube, presented in its original sequence.</span>
         </header>

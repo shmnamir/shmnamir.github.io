@@ -14,13 +14,19 @@ const videos = [
   "TYdYxblhzgE",
   "NsTqQDEzM1c",
   "Up19Bxxa5_8",
+  "VDTZhVueCCQ",
 ] as const;
+
+const fallbackTitles: Record<string, string> = {
+  VDTZhVueCCQ: "PANTOGRAPH STRUCTURES WORKSHOP – TEHRAN Trailer2",
+};
 
 export function YouTubeGallery() {
   const [expanded, setExpanded] = useState(false);
-  const [titles, setTitles] = useState<Record<string, string>>({});
+  const [titles, setTitles] = useState<Record<string, string>>(fallbackTitles);
   const fifthCard = useRef<HTMLElement>(null);
   const visibleVideos = expanded ? videos : videos.slice(0, 4);
+  const hiddenVideoCount = Math.max(0, videos.length - 4);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -51,7 +57,7 @@ export function YouTubeGallery() {
       results.forEach(([id, title]) => {
         if (title) nextTitles[id] = title;
       });
-      setTitles(nextTitles);
+      setTitles((currentTitles) => ({ ...currentTitles, ...nextTitles }));
     });
 
     return () => controller.abort();
@@ -106,7 +112,7 @@ export function YouTubeGallery() {
     </div>
     {!expanded && (
       <button className="show-more video-show-more" type="button" onClick={showRemainingVideos}>
-        Show More <span aria-hidden="true">+06</span>
+        Show More <span aria-hidden="true">+{String(hiddenVideoCount).padStart(2, "0")}</span>
       </button>
     )}
     </>
