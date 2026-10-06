@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { LineArrow } from "./line-arrow";
+import { trackEvent } from "./analytics";
 
 const videos = [
   "UcIaaAsZbNQ",
@@ -69,7 +70,10 @@ export function YouTubeGallery() {
     return () => window.cancelAnimationFrame(frame);
   }, [expanded]);
 
-  const showRemainingVideos = () => setExpanded(true);
+  const showRemainingVideos = () => {
+    trackEvent("expand_video_gallery", { revealed_videos: hiddenVideoCount });
+    setExpanded(true);
+  };
 
   return (
     <>
@@ -88,6 +92,7 @@ export function YouTubeGallery() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={`Open ${title} on YouTube in a new tab`}
+                onClick={() => trackEvent("youtube_click", { video_id: id, video_title: title, link_location: "thumbnail" })}
               >
                 <img
                   src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`}
@@ -99,10 +104,10 @@ export function YouTubeGallery() {
                 <span className="video-play" aria-hidden="true"><i /></span>
               </a>
             </div>
-            <h3><a className="video-title-link" href={youtubeUrl} target="_blank" rel="noreferrer">{title}</a></h3>
+            <h3><a className="video-title-link" href={youtubeUrl} target="_blank" rel="noreferrer" onClick={() => trackEvent("youtube_click", { video_id: id, video_title: title, link_location: "title" })}>{title}</a></h3>
             <div className="video-caption">
               <span>FILM / {number}</span>
-              <a href={youtubeUrl} target="_blank" rel="noreferrer">
+              <a href={youtubeUrl} target="_blank" rel="noreferrer" onClick={() => trackEvent("youtube_click", { video_id: id, video_title: title, link_location: "caption" })}>
                 View on YouTube <LineArrow />
               </a>
             </div>

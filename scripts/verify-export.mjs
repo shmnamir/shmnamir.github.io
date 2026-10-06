@@ -40,4 +40,13 @@ for (const file of await readdir('public/projects')) {
   }
 }
 assert.equal(await readFile('public/images/homepage-interactive-system-wide-connected-clean.png').then(b=>b.length), await readFile('out/images/homepage-interactive-system-wide-connected-clean.png').then(b=>b.length));
+const thankYou = await readFile(path.join(root, 'thank-you/index.html'), 'utf8');
+assert.match(thankYou, /<meta name="robots" content="noindex, nofollow"/);
+assert.match(thankYou, /<link rel="canonical" href="https:\/\/www\.amirshamani\.com\/thank-you\/"/);
+assert.doesNotMatch(html, /<meta name="robots" content="[^"]*noindex/);
+assert.match(html, /<link rel="canonical" href="https:\/\/www\.amirshamani\.com\/"/);
+assert.doesNotMatch(await readFile(path.join(root, 'sitemap.xml'), 'utf8'), /thank-you/);
+assert.match(await readFile(path.join(root, 'robots.txt'), 'utf8'), /Allow: \//);
+const preloads = [...html.matchAll(/<link\b[^>]*>/g)].filter(([tag]) => tag.includes('rel="preload"') && tag.includes('as="image"'));
+assert.equal(preloads.length, 1, 'Only the hero image should be preloaded');
 console.log(`Static export verified: ${checked} page asset references, original project plates, outline pairs, English interface and contact form.`);
