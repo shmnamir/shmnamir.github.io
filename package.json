@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
-    "test": "node scripts/verify-export.mjs"
+    "test": "node --test scripts/*.test.mjs && node scripts/verify-export.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

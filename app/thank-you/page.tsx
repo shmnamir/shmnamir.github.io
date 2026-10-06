@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { LeadConfirmation } from "../lead-confirmation";
 
 export const metadata: Metadata = {
   title: "Message received",
@@ -11,7 +10,6 @@ export const metadata: Metadata = {
 export default function ThankYouPage() {
   return (
     <main className="thank-you-page">
-      <LeadConfirmation />
       <p>CONTACT / CONFIRMATION</p>
       <h1>Thank you.</h1>
       <p>Your message has been sent. I will respond as soon as possible.</p>
